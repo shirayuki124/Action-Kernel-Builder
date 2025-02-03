@@ -51,7 +51,7 @@ jobs:
       
     - name: Setup Aptitude
       run: |
-        sudo apt -y install aptitude p7zip-full
+        sudo apt -y install aptitude p7zip-full llvm pahole
         sudo aptitude -y install libssl-dev pahole
       continue-on-error: true
       
