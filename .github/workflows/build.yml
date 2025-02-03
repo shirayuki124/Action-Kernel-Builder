@@ -87,7 +87,7 @@ jobs:
     - name: Set Swap Space
       uses: pierotofy/set-swap-space@master
       with:
-        swap-size-gb: 1
+        swap-size-gb: 
 
     - name: Building Kernel
       run: |
@@ -101,7 +101,7 @@ jobs:
 
     - name: Copy Kernel To Anykernel3
       run: | 
-        cd ${GITHUB_WORKSPACE}/KernelSU/out/arch/arm64/boot
+        cd ${GITHUB_WORKSPACE}/Kernel/out/arch/arm64/boot
         cp Image.gz ${GITHUB_WORKSPACE}/AnyKernel3
      
     - name: Get Kernel version
