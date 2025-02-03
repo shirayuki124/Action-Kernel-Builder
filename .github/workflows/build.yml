@@ -87,7 +87,7 @@ jobs:
     - name: Set Swap Space
       uses: pierotofy/set-swap-space@master
       with:
-        swap-size-gb: 
+        swap-size-gb: 8
 
     - name: Building Kernel
       run: |
