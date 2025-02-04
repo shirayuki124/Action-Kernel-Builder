@@ -12,6 +12,7 @@ on:
         - next-5.15
         - next-5.15-dev
         - kernelsu-5.15
+        - kernelsu-magic
       KERNEL_VARIANT:
         description: 'KERNEL_VARIANT'
         required: true
