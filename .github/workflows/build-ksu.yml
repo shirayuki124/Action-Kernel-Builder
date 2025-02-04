@@ -97,11 +97,6 @@ jobs:
       uses: pierotofy/set-swap-space@master
       with:
         swap-size-gb: 12
-
-    - name: Clang Llvm Version
-      run: |
-        clang --version
-        ld.lld --version
     
     - name: Building Kernel
       run: |
