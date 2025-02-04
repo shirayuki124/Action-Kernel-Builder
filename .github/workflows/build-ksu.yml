@@ -106,7 +106,6 @@ jobs:
         echo "KERNEL_VERSION=$KERNEL_VERSION" >> $GITHUB_ENV
         chmod +x build.sh
         make clean ARCH=arm64 && make mrproper ARCH=arm64 && rm -rf out/
-        make KCFLAGS=-DBTF_UNSUPPORTED
         ./build.sh
 
     - name: Copy Kernel To Anykernel3
