@@ -51,7 +51,7 @@ jobs:
       
     - name: Setup Aptitude
       run: |
-        sudo apt -y install aptitude p7zip-full llvm pahole
+        sudo apt -y install aptitude p7zip-full llvm pahole dwarves
         sudo aptitude -y install libssl-dev pahole
       continue-on-error: true
       
@@ -98,6 +98,11 @@ jobs:
       with:
         swap-size-gb: 12
 
+    - name: Clang Llvm Version
+      run: |
+        clang --version
+        ld.lld --version
+    
     - name: Building Kernel
       run: |
         cd ${GITHUB_WORKSPACE}/KernelSU
@@ -106,6 +111,7 @@ jobs:
         echo "KERNEL_VERSION=$KERNEL_VERSION" >> $GITHUB_ENV
         chmod +x build.sh
         make clean ARCH=arm64 && make mrproper ARCH=arm64 && rm -rf out/
+        make KCFLAGS=-DBTF_UNSUPPORTED
         ./build.sh
 
     - name: Copy Kernel To Anykernel3
