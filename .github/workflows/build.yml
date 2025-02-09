@@ -10,7 +10,9 @@ on:
         type: choice
         options:
         - android13-5.15
-        - twrp-12.1
+        - stock/android13-5.15
+        - next/android13-5.15
+        - backup/android13-5.15
 
 jobs:
   build:
@@ -79,7 +81,7 @@ jobs:
     - name: Clone Kernel Tree & Clang
       run: |
         cd ${GITHUB_WORKSPACE}
-        git clone -b ${{ github.event.inputs.KERNEL_BRANCH }} https://github.com/Bricked-Development/KLYN_Kernel_SM8550.git Kernel
+        git clone -b ${{ github.event.inputs.KERNEL_BRANCH }} https://github.com/Bricked-Development/Shirayuki_SM8550-Common.git Kernel
         cp ${GITHUB_WORKSPACE}/clang.sh ${GITHUB_WORKSPACE}/Kernel
         cd ${GITHUB_WORKSPACE}/Kernel
         chmod +x clang.sh
