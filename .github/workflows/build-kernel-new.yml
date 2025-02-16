@@ -107,7 +107,7 @@ jobs:
         export KERNEL_VERSION=$(make kernelversion | awk '/^[0-9]/ {print $1}')
         echo "KERNEL_VERSION=$KERNEL_VERSION" >> $GITHUB_ENV
         chmod +x scripts/build.sh
-        make clean ARCH=arm64 && make mrproper ARCH=arm64 && rm -rf out/ && make CC="ccache gcc" CXX="ccache g++"
+        make clean ARCH=arm64 && make mrproper ARCH=arm64 && rm -rf out/
         ./scripts/build.sh
 
     - name: Copy Kernel To Anykernel3
