@@ -124,11 +124,16 @@ jobs:
         cd ${GITHUB_WORKSPACE}/AnyKernel3
         7z a $KERNEL_VERSION.zip *
  
+    - name: Set Variables
+      run: |
+        echo "Outdir=${GITHUB_WORKSPACE}/AnyKernel3/$KERNEL_VERSION-${{ github.event.inputs.KERNEL_VARIANT }}.zip" >> $GITHUB_OUTPUT
+      id: var 
+    
     - name: Publish to GitHub
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          /home/runner/work/Action-Kernel-Builder/Action-Kernel-Builder/AnyKernel3/$KERNEL_VERSION.zip
+          ${{ steps.var.outputs.Outdir }}
           /home/runner/work/Action-Kernel-Builder/Action-Kernel-Builder/Kernel/out/arch/arm64/boot/Image
           /home/runner/work/Action-Kernel-Builder/Action-Kernel-Builder/Kernel/out/arch/arm64/boot/Image.gz
         name: Release Kernel
