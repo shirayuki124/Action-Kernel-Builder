@@ -83,7 +83,6 @@ jobs:
         git clone -b ${{ github.event.inputs.KERNEL_BRANCH }} https://github.com/Bricked-Development/Shirayuki_SM8550-Common.git Kernel
         cp ${GITHUB_WORKSPACE}/clang.sh ${GITHUB_WORKSPACE}/Kernel
         cd ${GITHUB_WORKSPACE}/Kernel
-        curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/next-susfs/kernel/setup.sh" | bash -s next-susfs
         chmod +x clang.sh
         ./clang.sh
         
