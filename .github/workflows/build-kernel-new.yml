@@ -126,7 +126,7 @@ jobs:
  
     - name: Set Variables
       run: |
-        echo "Outdir=${GITHUB_WORKSPACE}/AnyKernel3/$KERNEL_VERSION-${{ github.event.inputs.KERNEL_VARIANT }}.zip" >> $GITHUB_OUTPUT
+        echo "Outdir=${GITHUB_WORKSPACE}/AnyKernel3/$KERNEL_VERSION.zip" >> $GITHUB_OUTPUT
       id: var 
     
     - name: Publish to GitHub
