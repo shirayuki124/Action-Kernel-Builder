@@ -11,6 +11,7 @@ on:
         options:
         - android13-5.15
         - kernelsu-next-5.15
+        - kernelsu-5.15
 jobs:
   build:
     if: github.event.repository.owner.id == github.event.sender.id
