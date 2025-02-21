@@ -149,18 +149,14 @@ jobs:
       if: github.event.inputs.KERNEL_OPTIONS == 'KernelSU'
       run: |
         cd ${GITHUB_WORKSPACE}/AnyKernel3
-        7z a $KERNEL_VERSION--${{ github.event.inputs.KERNEL_VARIANT }}.zip *     
- 
-    - name: Set Variables
-      run: |
-        echo "Outdir=${GITHUB_WORKSPACE}/AnyKernel3/$KERNEL_VERSION.zip" >> $GITHUB_OUTPUT
-      id: var 
+        7z a $KERNEL_VERSION-${{ github.event.inputs.KERNEL_VARIANT }}.zip * 
     
     - name: Publish to GitHub
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          ${{ steps.var.outputs.Outdir }}
+          /home/runner/work/Action-Kernel-Builder/Action-Kernel-Builder/AnyKernel3/$KERNEL_VERSION.zip
+          /home/runner/work/Action-Kernel-Builder/Action-Kernel-Builder/AnyKernel3/$KERNEL_VERSION-${{ github.event.inputs.KERNEL_VARIANT }}.zip
           /home/runner/work/Action-Kernel-Builder/Action-Kernel-Builder/Kernel/out/arch/arm64/boot/Image
           /home/runner/work/Action-Kernel-Builder/Action-Kernel-Builder/Kernel/out/arch/arm64/boot/Image.gz
         name: Release Kernel
@@ -169,3 +165,4 @@ jobs:
           ChangeLog : None
       env:
         GITHUB_TOKEN: ${{ secrets.TEST }}
+      continue-on-error: true   
