@@ -140,14 +140,14 @@ jobs:
         echo "$KERNEL_VERSION"
     
     - name: Packing Zip (NoRoot)
-      run: |
       if: github.event.inputs.KERNEL_OPTIONS == 'NoRoot'
+      run: |
         cd ${GITHUB_WORKSPACE}/AnyKernel3
         7z a $KERNEL_VERSION.zip *
 
     - name: Packing Zip (KernelSU)
-      run: |
       if: github.event.inputs.KERNEL_OPTIONS == 'KernelSU'
+      run: |
         cd ${GITHUB_WORKSPACE}/AnyKernel3
         7z a $KERNEL_VERSION--${{ github.event.inputs.KERNEL_VARIANT }}.zip *     
  
