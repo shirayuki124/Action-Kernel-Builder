@@ -12,6 +12,18 @@ on:
         - android13-5.15
         - kernelsu-next-5.15
         - kernelsu-5.15
+      KERNEL_OPTIONS:
+        description: 'KERNEL_OPTIONS'
+        required: true
+        default: 'NoRoot'
+      KERNEL_VARIANT:
+        description: 'KERNEL_VARIANT'
+        required: true
+        default: 'GKI'
+        type: choice
+        options:
+        - KernelSU-Next-GKI
+        - KernelSU-GKI
 jobs:
   build:
     if: github.event.repository.owner.id == github.event.sender.id
@@ -123,10 +135,17 @@ jobs:
       run: |
         echo "$KERNEL_VERSION"
     
-    - name: Packing Zip
+    - name: Packing Zip (NoRoot)
       run: |
+      if: github.event.inputs.KERNEL_OPTIONS == 'NoRoot'
         cd ${GITHUB_WORKSPACE}/AnyKernel3
         7z a $KERNEL_VERSION.zip *
+
+    - name: Packing Zip (KernelSU)
+      run: |
+      if: github.event.inputs.KERNEL_OPTIONS == 'KernelSU'
+        cd ${GITHUB_WORKSPACE}/AnyKernel3
+        7z a $KERNEL_VERSION--${{ github.event.inputs.KERNEL_VARIANT }}.zip *     
  
     - name: Set Variables
       run: |
