@@ -16,6 +16,10 @@ on:
         description: 'KERNEL_OPTIONS'
         required: true
         default: 'NoRoot'
+        type: choice
+        options:
+        - NoRoot
+        - KernelSU
       KERNEL_VARIANT:
         description: 'KERNEL_VARIANT'
         required: true
