@@ -11,6 +11,7 @@ on:
         options:
         - android13-5.15
         - kernelsu-next-5.15
+        - kernelsu-next-5.15.bak
         - kernelsu-5.15
       KERNEL_OPTIONS:
         description: 'KERNEL_OPTIONS'
