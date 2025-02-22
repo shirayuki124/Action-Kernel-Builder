@@ -97,7 +97,7 @@ jobs:
     - name: Clone Kernel Tree & Clang
       run: |
         cd ${GITHUB_WORKSPACE}
-        git clone -b ${{ github.event.inputs.KERNEL_BRANCH }} https://github.com/Bricked-Development/Shirayuki_SM8550-Common.git Kernel
+        git clone -b ${{ github.event.inputs.KERNEL_BRANCH }} --depth=1 https://github.com/Bricked-Development/Shirayuki_SM8550-Common.git Kernel
         cp ${GITHUB_WORKSPACE}/clang.sh ${GITHUB_WORKSPACE}/Kernel
         cd ${GITHUB_WORKSPACE}/Kernel
         chmod +x clang.sh
