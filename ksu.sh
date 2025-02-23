@@ -4,6 +4,7 @@
 
 KERNEL_REPO=/home/runner/work/Action-Kernel-Builder/Action-Kernel-Builder/Kernel
 KERNEL_CONFIG=arch/arm64/configs/gki_defconfig
+KSU_PATCH_SUSFS=susfs4ksu/kernel_patches
 
 # Clone KernelSU
 curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main $KERNEL_REPO
@@ -12,14 +13,14 @@ curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh
 git clone -b gki-android13-5.15 https://gitlab.com/simonpunk/susfs4ksu.git $KERNEL_REPO/susfs4ksu
 
 # Copy the patch to KernelSU
-cp ./susfs4ksu/kernel_patches/KernelSU/10_enable_susfs_for_ksu.patch $KERNEL_REPO
+cp ./$KSU_PATCH_SUSFS/KernelSU/10_enable_susfs_for_ksu.patch $KERNEL_REPO
 
 # Copy SUSFS kernel patch to GKI kernel
-cp ./susfs4ksu/kernel_patches/50_add_susfs_in_kernel-5.15.patch $KERNEL_REPO
+cp ./$KSU_PATCH_SUSFS/50_add_susfs_in_kernel-5.15.patch $KERNEL_REPO
 
 # Copy file system files and header files
-cp ./kernel_patches/fs/* $KERNEL_REPO/fs
-cp ./kernel_patches/include/linux/* $KERNEL_REPO/include/linux
+cp ./$KSU_PATCH_SUSFS/fs/* $KERNEL_REPO/fs
+cp ./$KSU_PATCH_SUSFS/include/linux/* $KERNEL_REPO/include/linux
 
 # Go to the KernelSU directory and apply the patch.
 patch -p1 < 10_enable_susfs_for_ksu.patch
