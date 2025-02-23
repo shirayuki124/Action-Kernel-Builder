@@ -11,7 +11,6 @@ on:
         options:
         - android13-5.15
         - kernelsu-next-5.15
-        - kernelsu-next-5.15.bak
         - kernelsu-5.15
       KERNEL_OPTIONS:
         description: 'KERNEL_OPTIONS'
@@ -131,7 +130,6 @@ jobs:
     - name: Building Kernel (KernelSU)
       if: github.event.inputs.KERNEL_OPTIONS == 'KernelSU'
       run: |
-        cp ksu.sh ${GITHUB_WORKSPACE}/Kernel
         cd ${GITHUB_WORKSPACE}/Kernel
         export USE_CCACHE=1
         export CCACHE_EXEC=/usr/bin/ccache
@@ -140,8 +138,9 @@ jobs:
         ccache -o compression=true
         export KERNEL_VERSION=$(make kernelversion | awk '/^[0-9]/ {print $1}')
         echo "KERNEL_VERSION=$KERNEL_VERSION" >> $GITHUB_ENV
-        chmod +x ksu.sh
-        ./ksu.sh
+        chmod +x scripts/build.sh
+        make clean ARCH=arm64 && make mrproper ARCH=arm64 && rm -rf out/
+        ./scripts/build.sh
 
     - name: Check Ccache
       run: |
