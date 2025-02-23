@@ -113,7 +113,7 @@ jobs:
        free -h   
        
     - name: Building Kernel (NoRoot)
-      if: github.event.inputs.KERNEL_OPTIONS == 'KernelSU'
+      if: github.event.inputs.KERNEL_OPTIONS == 'NoRoot'
       run: |
         cd ${GITHUB_WORKSPACE}/Kernel
         export USE_CCACHE=1
