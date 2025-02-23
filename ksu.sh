@@ -9,13 +9,13 @@ KERNEL_CONFIG=arch/arm64/configs/gki_defconfig
 curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main $KERNEL_REPO
 
 # Clone SusFS
-git clone -b gki-android13-5.15 https://gitlab.com/simonpunk/susfs4ksu.git
+git clone -b gki-android13-5.15 https://gitlab.com/simonpunk/susfs4ksu.git $KERNEL_REPO/susfs4ksu
 
 # Copy the patch to KernelSU
-cp ./kernel_patches/KernelSU/10_enable_susfs_for_ksu.patch $KERNEL_REPO
+cp ./susfs4ksu/kernel_patches/KernelSU/10_enable_susfs_for_ksu.patch $KERNEL_REPO
 
 # Copy SUSFS kernel patch to GKI kernel
-cp ./kernel_patches/50_add_susfs_in_kernel-5.15.patch $KERNEL_REPO
+cp ./susfs4ksu/kernel_patches/50_add_susfs_in_kernel-5.15.patch $KERNEL_REPO
 
 # Copy file system files and header files
 cp ./kernel_patches/fs/* $KERNEL_REPO/fs
