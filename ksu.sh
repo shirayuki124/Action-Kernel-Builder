@@ -28,7 +28,6 @@ patch -p1 < 10_enable_susfs_for_ksu.patch
 patch -p1 < 50_add_susfs_in_kernel-5.15.patch
 
 # Add Config
-cd $KERNEL_REPO
 echo "CONFIG_KSU=y" >> $KERNEL_CONFIG
 echo "CONFIG_KSU_SUSFS=y" >> $KERNEL_CONFIG
 echo "CONFIG_KSU_SUSFS_HAS_MAGIC_MOUNT=y" >> $KERNEL_CONFIG
